@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.breiter.weathercheckerapp.viewmodel.WeatherViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.MainActivity">
+
+        <EditText
+            android:id="@+id/query_edit_text"
+            style="@style/InputStyle"
+            android:afterTextChanged="@{viewModel::afterCityTextChange}"
+            android:hint="@string/enter_city"
+            android:inputType="text"
+            android:maxLines="1"
+            app:hideSoftInputFromWindow="@{viewModel.typingCompleteEvent}"
+            app:layout_constraintEnd_toStartOf="@id/search_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="Autofill" />
+
+        <Button
+            android:id="@+id/search_button"
+            style="@style/ButtonStyle"
+            android:onClick="@{()-> viewModel.onStartSearching()}"
+            android:text="@string/go"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/query_edit_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:toastWarningMessage="@{viewModel.toastWarningEvent}" />
+
+        <ImageView
+            android:id="@+id/location_image"
+            style="@style/LocationImageStyle"
+            android:contentDescription="@string/pin_location"
+            android:src="@drawable/ic_location"
+            android:visibility="@{viewModel.resultForCurrentLocation ? View.VISIBLE : View.GONE }"
+            app:layout_constraintEnd_toStartOf="@id/city_name_text"
+            app:layout_constraintHorizontal_bias="0.947"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/query_edit_text" />
+
+        <TextView
+            android:id="@+id/city_name_text"
+            style="@style/CityNameStyle"
+            android:text="@{viewModel.currentWeather.city}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/query_edit_text"
+            app:visibility="@{viewModel.status}"
+            tools:text="Offenbach" />
+
+        <TextView
+            android:id="@+id/current_temp_text"
+            style="@style/CurrentTempStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_name_text"
+            app:temperatureFormatted="@{viewModel.currentWeather.main.temp}"
+            app:visibility="@{viewModel.status}"
+            tools:text="3°C" />
+
+        <View
+            android:id="@+id/section_one_divider"
+            style="@style/SectionDividerStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/current_temp_text"
+            app:visibility="@{viewModel.status}" />
+
+        <Space
+            android:id="@+id/center_point"
+            style="@style/CenterPointStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_one_divider" />
+
+        <ImageView
+            android:id="@+id/weather_icon"
+            style="@style/LargeWeatherIconStyle"
+            android:contentDescription="@string/current_weather_icon"
+            app:layout_constraintBottom_toTopOf="@+id/section_two_divider"
+            app:layout_constraintEnd_toStartOf="@id/center_point"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_one_divider"
+            app:visibility="@{viewModel.status}"
+            app:weatherIcon="@{viewModel.weathers}"
+            tools:src="@drawable/icon" />
+
+        <TextView
+            android:id="@+id/day_of_week_text"
+            style="@style/WeatherPreviewStyle"
+            android:layout_marginTop="@dimen/margin_eight"
+            app:dayOfWeek="@{viewModel.currentWeather.dateTime}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/center_point"
+            app:layout_constraintTop_toBottomOf="@+id/section_one_divider"
+            app:visibility="@{viewModel.status}"
+            tools:text="Thursday" />
+
+        <TextView
+            android:id="@+id/current_date_text"
+            style="@style/WeatherPreviewStyle"
+            app:dateFormatted="@{viewModel.currentWeather.dateTime}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/center_point"
+            app:layout_constraintTop_toBottomOf="@+id/day_of_week_text"
+            app:visibility="@{viewModel.status}"
+            tools:text="24 January" />
+
+        <TextView
+            android:id="@+id/weather_description_text"
+            style="@style/WeatherPreviewStyle"
+            app:descriptionFormatted="@{viewModel.weathers}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/center_point"
+            app:layout_constraintTop_toBottomOf="@+id/current_date_text"
+            app:visibility="@{viewModel.status}"
+            tools:text="Currently few clouds" />
+
+        <View
+            android:id="@+id/section_two_divider"
+            style="@style/SectionDividerStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weather_description_text"
+            app:visibility="@{viewModel.status}" />
+
+
+        <GridLayout
+            android:id="@+id/current_weather_grid"
+            style="@style/CurrentWeatherGridStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_two_divider"
+            app:visibility="@{viewModel.status}">
+
+            <ImageView
+                android:id="@+id/min_temp_icon"
+                style="@style/WeatherIconSmallStyle"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:contentDescription="@string/weather_icon_min_temp"
+                android:src="@drawable/min" />
+
+            <ImageView
+                android:id="@+id/max_temp_icon"
+                style="@style/WeatherIconSmallStyle"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:contentDescription="@string/weather_icon_max_temp"
+                android:src="@drawable/max" />
+
+            <ImageView
+                android:id="@+id/humidity_icon"
+                style="@style/WeatherIconSmallStyle"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:contentDescription="@string/weather_icon_humidity"
+                android:src="@drawable/humidity" />
+
+            <ImageView
+                android:id="@+id/pressure_icon"
+                style="@style/WeatherIconSmallStyle"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:contentDescription="@string/weather_icon_pressure"
+                android:src="@drawable/pressure" />
+
+            <ImageView
+                android:id="@+id/wind_icon"
+                style="@style/WeatherIconSmallStyle"
+                android:layout_row="0"
+                android:layout_column="4"
+                android:contentDescription="@string/weather_icon_wind"
+                android:src="@drawable/wind" />
+
+            <TextView
+                android:id="@+id/min_temp_text"
+                style="@style/WeatherDetailsStyle"
+                android:layout_row="1"
+                android:layout_column="0"
+                app:temperatureFormatted="@{viewModel.currentWeather.main.minTemp}"
+                tools:text="-13°C" />
+
+            <TextView
+                android:id="@+id/max_temp_text"
+                style="@style/WeatherDetailsStyle"
+                android:layout_row="1"
+                android:layout_column="1"
+                app:temperatureFormatted="@{viewModel.currentWeather.main.maxTemp}"
+                tools:text="8°C" />
+
+            <TextView
+                android:id="@+id/humidity_text"
+                style="@style/WeatherDetailsStyle"
+                android:layout_row="1"
+                android:layout_column="2"
+                app:humidityFormatted="@{viewModel.currentWeather.main.humidity}"
+                tools:text="75%" />
+
+            <TextView
+                android:id="@+id/air_pressure_text"
+                style="@style/WeatherDetailsStyle"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="3"
+                app:pressureFormatted="@{viewModel.currentWeather.main.pressure}"
+                tools:text="1100 hPa" />
+
+            <TextView
+                android:id="@+id/wind_speed_text"
+                style="@style/WeatherDetailsStyle"
+                android:layout_row="1"
+                android:layout_column="4"
+                app:windSpeedFormatted="@{viewModel.currentWeather.wind.speed}"
+                tools:text="44 m/s" />
+        </GridLayout>
+
+        <View
+            android:id="@+id/section_three_divider"
+            style="@style/SectionDividerStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/current_weather_grid"
+            app:visibility="@{viewModel.status}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forecast_list"
+            style="@style/ForecastListStyle"
+            app:forecastListData="@{viewModel.forecasts}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/section_three_divider"
+            app:visibility="@{viewModel.status}" />
+
+        <ImageView
+            android:id="@+id/weather_status_image"
+            style="@style/ErrorLoadingImageStyle"
+            android:contentDescription="@string/network_status"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/query_edit_text"
+            app:visibleOnError="@{viewModel.status}"
+            tools:src="@drawable/loading_img" />
+
+        <TextView
+            style="@style/CityNameStyle"
+            android:textSize="@dimen/text_size_twenty_four"
+            android:visibility="gone"
+            app:errorText="@{viewModel.errorMessage}"
+            app:layout_constraintBottom_toTopOf="@id/weather_status_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:visibleOnError="@{viewModel.status}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

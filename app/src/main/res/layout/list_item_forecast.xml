@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="forecastItem"
+            type="com.breiter.weathercheckerapp.model.ForecastItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/day_of_week_text"
+                style="@style/ForecastItemStyle"
+                android:layout_marginStart="16dp"
+                android:textColor="@android:color/white"
+                app:dayOfWeekShort="@{forecastItem.dateTime}"
+                tools:text="Sat" />
+
+            <TextView
+                android:id="@+id/date"
+                style="@style/ForecastItemStyle"
+                android:textColor="@android:color/white"
+                app:dateShortFormatted="@{forecastItem.dateTime}"
+                tools:text="01 Feb" />
+
+            <ImageView
+                android:id="@+id/forecast_icon"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_weight="1"
+                android:layout_marginTop="@dimen/margin_eight"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/icon_presenting_weather"
+                app:weatherIcon="@{forecastItem.list}"
+                tools:src="@drawable/icon_01d" />
+
+
+            <TextView
+                android:id="@+id/temp_day_text"
+                style="@style/ForecastItemStyle"
+                android:textAlignment="textEnd"
+                android:textColor="@android:color/white"
+                app:temperatureFormatted="@{forecastItem.temp.tempDay}"
+                tools:text="18°C" />
+
+            <TextView
+                android:id="@+id/night_day_text"
+                style="@style/ForecastItemStyle"
+                android:layout_marginEnd="@dimen/margin_sixteen"
+                android:textAlignment="textEnd"
+                app:temperatureFormatted="@{forecastItem.temp.tempNight}"
+                tools:text="-1°C" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

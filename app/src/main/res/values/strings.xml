@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">WeatherCheckerApp</string>
+    <string name="enter_city">Enter city</string>
+    <string name="go">Go</string>
+    <string name="location_icon">location icon</string>
+    <string name="icon_presenting_weather">Icon describing weather conditions</string>
+    <string name="weather_icon_min_temp">Weather icon presenting minimum temperature</string>
+    <string name="weather_icon_max_temp">Weather icon presenting maximum temperature</string>
+    <string name="weather_icon_humidity">Weather icon presenting humidity</string>
+    <string name="weather_icon_pressure">Weather icon presenting air pressure</string>
+    <string name="weather_icon_wind">Weather icon presenting wind</string>
+    <string name="warning_message">You have to provide a city name</string>
+    <string name="pin_location">Pin location</string>
+    <string name="current_weather_icon">Current weather icon</string>
+    <string name="network_status">Network status icon, loading or error.</string>
+    <string name="no_internet_error">Check internet connection.</string>
+    <string name="wrong_input_error">No weather for this city found.</string>
+    <string name="something_wrong_error">"Something went wrong… "</string>
+</resources>
