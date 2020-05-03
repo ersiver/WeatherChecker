@@ -3,10 +3,7 @@ package com.breiter.weathercheckerapp.viewmodel
 import android.app.Application
 import android.location.Location
 import android.text.Editable
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.breiter.weathercheckerapp.model.CurrentWeather
 import com.breiter.weathercheckerapp.model.ForecastItem
 import com.breiter.weathercheckerapp.model.WeatherItem
@@ -16,7 +13,7 @@ import kotlinx.coroutines.launch
 
 enum class WeatherApiStatus { START, LOADING, ERROR, DONE }
 
-class WeatherViewModel(val app: Application) : AndroidViewModel(app) {
+class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
     private val repository: WeatherRepository = WeatherRepository()
 
     private val query = MutableLiveData<String>()
@@ -132,6 +129,19 @@ class WeatherViewModel(val app: Application) : AndroidViewModel(app) {
                 _errorMessage.value = error.message
                 _status.value = WeatherApiStatus.ERROR
             }
+        }
+    }
+
+    /**
+     * Factory for constructing WeatherViewModel with parameter
+     */
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return WeatherViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewModel")
         }
     }
 }

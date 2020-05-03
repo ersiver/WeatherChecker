@@ -26,7 +26,9 @@ class WeatherFragment : Fragment() {
 
         val binding = WeatherFragmentBinding.inflate(layoutInflater)
 
-        weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
+        weatherViewModel =
+            ViewModelProvider(this, WeatherViewModel.Factory(requireActivity().application))
+                .get(WeatherViewModel::class.java)
 
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
