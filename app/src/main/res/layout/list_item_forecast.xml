@@ -7,7 +7,7 @@
 
         <variable
             name="forecastItem"
-            type="com.breiter.weathercheckerapp.model.ForecastItem" />
+            type="com.breiter.weathercheckerapp.domain.ForecastItem" />
 
     </data>
 
@@ -49,7 +49,7 @@
                 android:layout_marginTop="@dimen/margin_eight"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/icon_presenting_weather"
-                app:weatherIcon="@{forecastItem.list}"
+                app:weatherIcon="@{forecastItem.weathers}"
                 tools:src="@drawable/icon_01d" />
 
 
@@ -58,7 +58,7 @@
                 style="@style/ForecastItemStyle"
                 android:textAlignment="textEnd"
                 android:textColor="@android:color/white"
-                app:temperatureFormatted="@{forecastItem.temp.tempDay}"
+                app:temperatureFormatted="@{forecastItem.tempDay}"
                 tools:text="18°C" />
 
             <TextView
@@ -66,7 +66,7 @@
                 style="@style/ForecastItemStyle"
                 android:layout_marginEnd="@dimen/margin_sixteen"
                 android:textAlignment="textEnd"
-                app:temperatureFormatted="@{forecastItem.temp.tempNight}"
+                app:temperatureFormatted="@{forecastItem.tempNight}"
                 tools:text="-1°C" />
 
         </LinearLayout>

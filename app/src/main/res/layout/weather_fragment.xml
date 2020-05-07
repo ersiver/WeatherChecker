@@ -5,9 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
-
         <variable
             name="viewModel"
             type="com.breiter.weathercheckerapp.viewmodel.WeatherViewModel" />
@@ -69,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city_name_text"
-            app:temperatureFormatted="@{viewModel.currentWeather.main.temp}"
+            app:temperatureFormatted="@{viewModel.currentWeather.temp}"
             app:visibility="@{viewModel.status}"
             tools:text="3°C" />
 
@@ -93,13 +91,13 @@
             android:id="@+id/weather_icon"
             style="@style/LargeWeatherIconStyle"
             android:contentDescription="@string/current_weather_icon"
+            app:weatherIcon="@{viewModel.currentWeather.weathers}"
             app:layout_constraintBottom_toTopOf="@+id/section_two_divider"
             app:layout_constraintEnd_toStartOf="@id/center_point"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/section_one_divider"
             app:visibility="@{viewModel.status}"
-            app:weatherIcon="@{viewModel.weathers}"
             tools:src="@drawable/icon" />
 
         <TextView
@@ -128,7 +126,7 @@
         <TextView
             android:id="@+id/weather_description_text"
             style="@style/WeatherPreviewStyle"
-            app:descriptionFormatted="@{viewModel.weathers}"
+            app:descriptionFormatted="@{viewModel.currentWeather.weathers}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/center_point"
@@ -198,7 +196,7 @@
                 style="@style/WeatherDetailsStyle"
                 android:layout_row="1"
                 android:layout_column="0"
-                app:temperatureFormatted="@{viewModel.currentWeather.main.minTemp}"
+                app:temperatureFormatted="@{viewModel.currentWeather.minTemp}"
                 tools:text="-13°C" />
 
             <TextView
@@ -206,7 +204,7 @@
                 style="@style/WeatherDetailsStyle"
                 android:layout_row="1"
                 android:layout_column="1"
-                app:temperatureFormatted="@{viewModel.currentWeather.main.maxTemp}"
+                app:temperatureFormatted="@{viewModel.currentWeather.maxTemp}"
                 tools:text="8°C" />
 
             <TextView
@@ -214,7 +212,7 @@
                 style="@style/WeatherDetailsStyle"
                 android:layout_row="1"
                 android:layout_column="2"
-                app:humidityFormatted="@{viewModel.currentWeather.main.humidity}"
+                app:humidityFormatted="@{viewModel.currentWeather.humidity}"
                 tools:text="75%" />
 
             <TextView
@@ -223,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_row="1"
                 android:layout_column="3"
-                app:pressureFormatted="@{viewModel.currentWeather.main.pressure}"
+                app:pressureFormatted="@{viewModel.currentWeather.pressure}"
                 tools:text="1100 hPa" />
 
             <TextView
@@ -231,7 +229,7 @@
                 style="@style/WeatherDetailsStyle"
                 android:layout_row="1"
                 android:layout_column="4"
-                app:windSpeedFormatted="@{viewModel.currentWeather.wind.speed}"
+                app:windSpeedFormatted="@{viewModel.currentWeather.windSpeed}"
                 tools:text="44 m/s" />
         </GridLayout>
 

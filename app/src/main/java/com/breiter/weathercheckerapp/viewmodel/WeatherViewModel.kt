@@ -4,9 +4,8 @@ import android.app.Application
 import android.location.Location
 import android.text.Editable
 import androidx.lifecycle.*
-import com.breiter.weathercheckerapp.model.CurrentWeather
-import com.breiter.weathercheckerapp.model.ForecastItem
-import com.breiter.weathercheckerapp.model.WeatherItem
+import com.breiter.weathercheckerapp.domain.CurrentWeather
+import com.breiter.weathercheckerapp.domain.ForecastItem
 import com.breiter.weathercheckerapp.repository.WeatherRepository
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
@@ -23,10 +22,6 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
     private val _currentWeather = repository.currentWeather
     val currentWeather: LiveData<CurrentWeather>
         get() = _currentWeather
-
-    private val _weathers = repository.weathers
-    val weathers: LiveData<List<WeatherItem>>
-        get() = _weathers
 
     private val _forecasts = repository.forecasts
     val forecasts: LiveData<List<ForecastItem>>

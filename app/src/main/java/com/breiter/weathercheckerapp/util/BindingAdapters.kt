@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.breiter.weathercheckerapp.R
-import com.breiter.weathercheckerapp.model.ForecastItem
-import com.breiter.weathercheckerapp.model.WeatherItem
+import com.breiter.weathercheckerapp.domain.ForecastItem
+import com.breiter.weathercheckerapp.domain.WeatherItem
 import com.breiter.weathercheckerapp.ui.ForecastAdapter
 import com.breiter.weathercheckerapp.viewmodel.WeatherApiStatus
 import java.sql.Timestamp
@@ -151,33 +151,6 @@ fun TextView.setWindSpeed(wind: Double) {
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<ForecastItem>?) {
     val adapter = recyclerView.adapter as ForecastAdapter
     adapter.submitList(data)
-}
-
-@BindingAdapter("weatherIcon")
-fun ImageView.setWeatherIcon(iconId: String) {
-    setImageResource(
-        when (iconId) {
-            "01d" -> R.drawable.icon_01d
-            "01n" -> R.drawable.icon_01n
-            "02d" -> R.drawable.icon_02d
-            "02n" -> R.drawable.icon_02n
-            "03d" -> R.drawable.icon_03
-            "03n" -> R.drawable.icon_03
-            "04d" -> R.drawable.icon_04
-            "04n" -> R.drawable.icon_04
-            "09d" -> R.drawable.icon_09
-            "09n" -> R.drawable.icon_09
-            "10d" -> R.drawable.icon_10d
-            "10n" -> R.drawable.icon_10n
-            "11d" -> R.drawable.icon_11
-            "11n" -> R.drawable.icon_11
-            "13d" -> R.drawable.icon_13
-            "13n" -> R.drawable.icon_13
-            "50d" -> R.drawable.icon_50
-            "50n" -> R.drawable.icon_50
-            else -> R.drawable.icon
-        }
-    )
 }
 
 @BindingAdapter("visibleOnError")

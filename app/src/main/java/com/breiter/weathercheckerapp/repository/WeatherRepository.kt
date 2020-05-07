@@ -3,28 +3,20 @@ package com.breiter.weathercheckerapp.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.breiter.weathercheckerapp.model.CurrentWeather
-import com.breiter.weathercheckerapp.model.Forecast
-import com.breiter.weathercheckerapp.model.ForecastItem
-import com.breiter.weathercheckerapp.model.WeatherItem
+import com.breiter.weathercheckerapp.domain.CurrentWeather
+import com.breiter.weathercheckerapp.domain.ForecastItem
+import com.breiter.weathercheckerapp.network.CurrentWeatherDTO
 import com.breiter.weathercheckerapp.network.WeatherApi
+import com.breiter.weathercheckerapp.network.asDomainModel
 
 class WeatherRepository {
 
-    private val _currentWeather = MutableLiveData<CurrentWeather>()
-    val currentWeather: LiveData<CurrentWeather>
-        get() = _currentWeather
-
-    private val _weathers = Transformations.map(_currentWeather) {
-        it.list
+    private val _currentWeather = MutableLiveData<CurrentWeatherDTO>()
+    val currentWeather: LiveData<CurrentWeather> = Transformations.map(_currentWeather) {
+        it.asDomainModel()
     }
-    val weathers: LiveData<List<WeatherItem>>
-        get() = _weathers
 
-    private val forecast = MutableLiveData<Forecast>()
-    private val _forecasts = Transformations.map(forecast) {
-        it.list
-    }
+    private val _forecasts = MutableLiveData<List<ForecastItem>>()
     val forecasts: LiveData<List<ForecastItem>>
         get() = _forecasts
 
@@ -44,7 +36,8 @@ class WeatherRepository {
 
     private suspend fun getForecast(lat: Double, lon: Double) {
         try {
-            forecast.value = WeatherApi.retrofitService.getForecast(lat, lon)
+            val forecastResponse = WeatherApi.retrofitService.getForecast(lat, lon)
+            _forecasts.value = forecastResponse.asDomainModel()
         } catch (t: Throwable) {
             throw Throwable(t)
         }
@@ -54,6 +47,7 @@ class WeatherRepository {
      * Gets weather information for user's input from Weather API Retrofit.
      * service and updates the weather and forecast LiveData.
      */
+
     suspend fun getWeatherAndForecasts(cityName: String) {
         try {
             _currentWeather.value = WeatherApi.retrofitService.getCurrentWeather(cityName)
@@ -65,7 +59,8 @@ class WeatherRepository {
 
     private suspend fun getForecast(cityName: String) {
         try {
-            forecast.value = WeatherApi.retrofitService.getForecast(cityName)
+            val forecastResponse = WeatherApi.retrofitService.getForecast(cityName)
+            _forecasts.value = forecastResponse.asDomainModel()
         } catch (t: Throwable) {
             throw Throwable(t)
         }

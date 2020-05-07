@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.breiter.weathercheckerapp.model.ForecastItem
 import com.breiter.weathercheckerapp.databinding.ListItemForecastBinding
+import com.breiter.weathercheckerapp.domain.ForecastItem
 
 
 class ForecastAdapter : ListAdapter<ForecastItem, ForecastAdapter.ViewHolder>(DiffCallback()) {
@@ -23,7 +23,7 @@ class ForecastAdapter : ListAdapter<ForecastItem, ForecastAdapter.ViewHolder>(Di
     /**
      * ViewHolder for forecast items. All work is done by data binding.
      */
-    class ViewHolder private constructor(val binding: ListItemForecastBinding) :
+    class ViewHolder private constructor(private val binding: ListItemForecastBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ForecastItem?) {
@@ -34,12 +34,12 @@ class ForecastAdapter : ListAdapter<ForecastItem, ForecastAdapter.ViewHolder>(Di
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemForecastBinding.inflate(layoutInflater, parent, false)
+                val binding = ListItemForecastBinding
+                    .inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
     }
-
 }
 
 class DiffCallback : DiffUtil.ItemCallback<ForecastItem>() {
