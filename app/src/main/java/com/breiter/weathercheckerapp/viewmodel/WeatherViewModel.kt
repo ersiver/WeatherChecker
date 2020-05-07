@@ -39,9 +39,9 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
     val errorMessage: LiveData<String?>
         get() = _errorMessage
 
-    private val _toastWaningEvent = MutableLiveData<Boolean?>()
+    private val _toastWarningEvent = MutableLiveData<Boolean?>()
     val toastWarningEvent: LiveData<Boolean?>
-        get() = _toastWaningEvent
+        get() = _toastWarningEvent
 
     private val _typingCompleteEvent = MutableLiveData<Boolean?>()
     val typingCompleteEvent: LiveData<Boolean?>
@@ -91,7 +91,7 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
 
         query.value?.let {
             if (it.isBlank())
-                _toastWaningEvent.value = true
+                _toastWarningEvent.value = true
             else
                 getWeatherDataForCity(it)
         }
