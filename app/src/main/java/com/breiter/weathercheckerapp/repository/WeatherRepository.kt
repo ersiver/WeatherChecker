@@ -22,7 +22,7 @@ class WeatherRepository {
 
     /**
      * Gets weather information for current location from the
-     * Weather API service and updates the weather and forecast LiveData.
+     * Weather API service and updates the _currentWeather and _forecasts LiveData.
      * Retrofit makes suspending functions main-safe.
      */
     suspend fun getWeatherAndForecasts(lat: Double, lon: Double) {
@@ -44,8 +44,8 @@ class WeatherRepository {
     }
 
     /**
-     * Gets weather information for user's input from Weather API Retrofit.
-     * service and updates the weather and forecast LiveData.
+     * Gets weather information for user's input from Weather API Retrofit
+     * service and updates the _currentWeather and _forecasts LiveData.
      */
 
     suspend fun getWeatherAndForecasts(cityName: String) {

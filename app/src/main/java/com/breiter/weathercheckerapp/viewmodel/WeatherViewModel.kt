@@ -68,7 +68,7 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * Refresh _currentWeather, _weather and _forecasts LiveData via repository.
+     * Refresh _currentWeather and _forecasts LiveData via repository.
      * Sets value of _resultForCurrentLocation as true to display pin location image.
      */
     private fun getWeatherDataForCurrentLocation(lat: Double, lon: Double) = launchDataLoad {
@@ -98,7 +98,7 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
     }
 
     /**
-     * Refresh _currentWeather, _weather and _forecasts LiveData via repository.
+     * Refresh _currentWeather and _forecasts LiveData via repository.
      * Sets value of _resultForCurrentLocation to false to hide a pin location image.
      */
     private fun getWeatherDataForCity(cityName: String) = launchDataLoad {
