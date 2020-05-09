@@ -3,7 +3,6 @@ buildscript {
         version_android_gradle_plugin = "3.6.2"
         version_core = "1.2.0"
         version_constraint_layout = "1.1.3"
-        version_glide = "4.11.0"
         version_kotlin = "1.3.71"
         version_kotlin_coroutines = "1.3.5"
         version_lifecycle_extensions = "2.2.0"
