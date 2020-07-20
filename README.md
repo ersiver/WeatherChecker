@@ -1,19 +1,38 @@
-# WeatherChecker 
+# WeatherApp
 
-Android Weather app developed in Kotlin. Displays current weather conditions and a 14-day forecast for the last known location and cities around the world.
+Android Weather app developed in Kotlin. The app is composed of a single screen and the app widget.
 
-## Libraries and tools used:
+## :link: WeatherFragment
+Displays current weather conditions and a 14-day forecast for the device's location. It also allows to search the weather by a city name. 
+The app integrates <b>coroutines with Retrofit</b> to fetch weather information and binds all UI components in the XML layout to data sources using a <b>DataBinding</b> rather than programmatically. The UI calls are done in <b>Binding Adapters</b> reducing boilerplate code in the fragment. All is done following <b>Model-View-ViewModel</b> (MVVM) architecture for the presentation layer. Using repository the web services is abstracted from the rest of the app. The weather is exposed from the view model via <b>LiveData</b> and bound to a views so they're refreshed automatically when condition changes. The button's onClick attribute and the TextWatcher attached to the EditText are bound to the view model via a <b>lambda expression.</b>  
+
+## :link:  Widget
+Displays up to date weahter info for the current device's location. The widget is updated periodically with new data through a <b>WorkManager</b>. When the widget is added to the screen, the WorkManager schedules <b>repeated background work</b> to request location updates and fetch weather data from the API performing <b>suspending work</b>. When the widget is removed the background work is terminated.  In addition to the FINE location permission, the app has support for Android 10 and 11 by adding logic to access location in the background (android.permission.ACCESS_BACKGROUND_LOCATION). 
+
+## :link:  Design
++ App offers a full <b>edge-to-edge</b> screen experience (draws behind the transparent navigation and status bars) and uses insets to move controls away from gesture area.
++ The app displays Snackbar explaining importance of the location permission with an <b>action</b>, that allows the user to navigate to the settings.
++ Scrolling list of forecasts is displayed in the RecyclerView widget.
++ Styled button behaves intuitively changing their appearance when they are pressed.
++ Spinner is displayed when the data is loaded.
+
+## :link:  Libraries and tools used:
 + Retrofit to make REST requests to the web service integrated with Coroutine to run operations in the background without creating multiple callbacks. <br/>
 + Moshi to handle the deserialization of the returned JSON to Kotlin data objects.<br/>
-+ ViewModel, LiveData, Data Binding with binding adapters.<br/>
-+ MVVM pattern. Using repository the web services is abstracted from the rest of the app.<br/>
-+ Play Services Location.<br/>
++ Android Architecture Components (ViewModel, LiveData, Data Binding, WorkManager).<br/>
++ The app accesses the set of supported location services through classes in the com.google.android.gms.location package.
 + OpenWeatherMap API.<br/>
 
-## Preview
-![1](https://user-images.githubusercontent.com/58771510/80873255-194f1500-8caf-11ea-92a0-3ab0d74f2628.png) ![2](https://user-images.githubusercontent.com/58771510/80873256-1a804200-8caf-11ea-923d-187cca46fb02.png)
-![3](https://user-images.githubusercontent.com/58771510/80873257-1b18d880-8caf-11ea-9af0-23d932179f03.png) ![4](https://user-images.githubusercontent.com/58771510/80873258-1bb16f00-8caf-11ea-98e0-15a27da56db4.png)
-![5](https://user-images.githubusercontent.com/58771510/80873259-1c4a0580-8caf-11ea-9ef7-01c8f9f2040c.png) ![6](https://user-images.githubusercontent.com/58771510/80873260-1ce29c00-8caf-11ea-941a-de70feb50c9d.png)
+## :link:  Preview
+![gif_main](https://user-images.githubusercontent.com/58771510/87946138-8cd81580-ca99-11ea-93c5-b07fa1ac0faa.gif)
+![gif_snackbar](https://user-images.githubusercontent.com/58771510/87946159-92356000-ca99-11ea-9801-2fd48805eb4a.gif)
+![gif_widget](https://user-images.githubusercontent.com/58771510/87946170-95305080-ca99-11ea-917c-ab6b8b87cc20.gif)
+![gif_emptytext](https://user-images.githubusercontent.com/58771510/87946176-9792aa80-ca99-11ea-9e34-a2322552c029.gif)
+![permission_reques](https://user-images.githubusercontent.com/58771510/87946214-a24d3f80-ca99-11ea-92dd-fc7ace1e7c47.png)
+![no_internet](https://user-images.githubusercontent.com/58771510/87946221-a4af9980-ca99-11ea-8405-5c323a57f967.jpg) ![wrong_input](https://user-images.githubusercontent.com/58771510/87946323-c446c200-ca99-11ea-9244-40185099b3b6.jpg)
 
-## Resources
+
+## :link:  Resources
 + Icons from Flaticon.com (byFreepik, Swifticons, Good Ware, Vitaliy Gorbachev, Those Icon, Hirschwolf Lineal, Iconixar, Eucalyp, Pixel Perfect).
+
+
