@@ -24,9 +24,9 @@ fun dismissKeyboard(view: View, isTypingComplete: Boolean) {
     val inputMethodManager =
         view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
-    if (isTypingComplete) {
+    if (isTypingComplete)
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-    }
+
 }
 
 @BindingAdapter("toastWarningMessage")
@@ -59,36 +59,18 @@ fun bindResultsOnApiStatus(
 
 @BindingAdapter("temperatureFormatted")
 fun TextView.setTemperatureFormatted(temp: Double) {
-    val tempAsString = temp.toString().substringBefore(".") + "°C"
-    text = tempAsString
+    //val tempAsString = temp.toString().substringBefore(".") + "°C"
+    text = temp.asTempString()
 }
 
 @BindingAdapter("weatherIcon")
 fun ImageView.setIcon(data: List<WeatherItem>?) {
-    val item = data?.first()
-    setImageResource(
-        when (item?.iconId) {
-            "01d" -> R.drawable.icon_01d
-            "01n" -> R.drawable.icon_01n
-            "02d" -> R.drawable.icon_02d
-            "02n" -> R.drawable.icon_02n
-            "03d" -> R.drawable.icon_03
-            "03n" -> R.drawable.icon_03
-            "04d" -> R.drawable.icon_04
-            "04n" -> R.drawable.icon_04
-            "09d" -> R.drawable.icon_09
-            "09n" -> R.drawable.icon_09
-            "10d" -> R.drawable.icon_10d
-            "10n" -> R.drawable.icon_10n
-            "11d" -> R.drawable.icon_11
-            "11n" -> R.drawable.icon_11
-            "13d" -> R.drawable.icon_13
-            "13n" -> R.drawable.icon_13
-            "50d" -> R.drawable.icon_50
-            "50n" -> R.drawable.icon_50
-            else -> R.drawable.icon
-        }
-    )
+    var resId = R.drawable.icon
+    data?.let {
+        val item = data[0]
+        resId = item.iconId.asResourceId()
+    }
+    setImageResource(resId)
 }
 
 @BindingAdapter("dayOfWeek")
@@ -198,15 +180,19 @@ fun bindResultOnApiStatus(
 @BindingAdapter("errorText")
 fun setErrorText(textView: TextView, errorMessage: String?) {
     var message = textView.context.getString(R.string.something_wrong_error)
-    if (errorMessage != null) {
-        if (errorMessage.contains("Internal Server Error"))
+
+    errorMessage?.let {
+        if (isServerError(it))
             message = textView.context.getString(R.string.wrong_input_error)
-        else if (errorMessage.contains("Unable to resolve host"))
+        else if (isUnableResolveHost(it))
             message = textView.context.getString(R.string.no_internet_error)
     }
     textView.text = message
 }
 
+fun isServerError(errorMessage: String) = errorMessage.contains("Internal Server Error")
+
+fun isUnableResolveHost(errorMessage: String) = errorMessage.contains("Unable to resolve host")
 
 
 

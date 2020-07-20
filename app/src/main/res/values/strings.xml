@@ -13,7 +13,19 @@
     <string name="pin_location">Pin location</string>
     <string name="current_weather_icon">Current weather icon</string>
     <string name="network_status">Network status icon, loading or error.</string>
+
+    <!-- Errors-->
     <string name="no_internet_error">Check internet connection.</string>
     <string name="wrong_input_error">No weather for this city found.</string>
     <string name="something_wrong_error">"Something went wrong… "</string>
+    <string name="add_widget">Add widget</string>
+    <string name="widget_default">No information…</string>
+    <string name="default_null"> </string>
+
+    <!-- Snackbar Messages-->
+    <string name="location_required_explanation">For the best experience enable location for WeatherChecker.</string>
+
+    <!-- Toast Messages-->
+    <string name="location_required_explanation_widget">Location required. Enable location and add the widget again!</string>
+
 </resources>

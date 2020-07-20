@@ -1,23 +1,22 @@
+
 package com.breiter.weathercheckerapp.viewmodel
 
-import android.app.Application
 import android.location.Location
 import android.text.Editable
 import androidx.lifecycle.*
 import com.breiter.weathercheckerapp.domain.CurrentWeather
 import com.breiter.weathercheckerapp.domain.ForecastItem
 import com.breiter.weathercheckerapp.repository.WeatherRepository
-import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
 
 enum class WeatherApiStatus { START, LOADING, ERROR, DONE }
 
-class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
+class WeatherViewModel : ViewModel() {
+    private val _currentLocation = MutableLiveData<Location>()
+
     private val repository: WeatherRepository = WeatherRepository()
 
     private val query = MutableLiveData<String>()
-
-    private val currentLocation = MutableLiveData<Location>()
 
     private val _currentWeather = repository.currentWeather
     val currentWeather: LiveData<CurrentWeather>
@@ -52,28 +51,24 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
         _status.value = WeatherApiStatus.START
     }
 
-    //Called when app launches to display weather data for a current location.
-    fun startListening() {
-        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(app)
-        fusedLocationClient.lastLocation.addOnSuccessListener {
-            currentLocation.value = it
-            getStarterWeatherInfo()
-        }
-    }
-
-    private fun getStarterWeatherInfo() {
-        currentLocation.value?.let {
-            getWeatherDataForCurrentLocation(it.latitude, it.longitude)
-        }
+    /**
+     * Invoked immediately when the operating
+     * system gets the devices location.
+     */
+    fun onLocationUpdated(location: Location) {
+        _currentLocation.value = location
+        getWeatherDataForCurrentLocation()
     }
 
     /**
      * Refresh _currentWeather and _forecasts LiveData via repository.
      * Sets value of _resultForCurrentLocation as true to display pin location image.
      */
-    private fun getWeatherDataForCurrentLocation(lat: Double, lon: Double) = launchDataLoad {
-        repository.getWeatherAndForecasts(lat, lon)
-        _resultForCurrentLocation.value = true
+    private fun getWeatherDataForCurrentLocation() = launchDataLoad {
+        _currentLocation.value?.let { it ->
+            repository.getWeatherAndForecasts(it.latitude, it.longitude)
+            _resultForCurrentLocation.value = true
+        }
     }
 
     //Executes afterTextChanged and sets value of query LiveData to user's input.
@@ -106,7 +101,6 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
         repository.getWeatherAndForecasts(cityName)
     }
 
-
     /**
      * Data loading coroutine gets data via repository.
      * Updates status LiveData and error message on fail.
@@ -126,18 +120,4 @@ class WeatherViewModel(private val app: Application) : AndroidViewModel(app) {
             }
         }
     }
-
-    /**
-     * Factory for constructing WeatherViewModel with parameter
-     */
-    class Factory(val app: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return WeatherViewModel(app) as T
-            }
-            throw IllegalArgumentException("Unable to construct viewModel")
-        }
-    }
 }
-

@@ -9,7 +9,6 @@ import com.squareup.moshi.JsonClass
 /**
 * DataTransferObjects (DTO) are responsible for parsing responses from the network.
 */
-
 @JsonClass(generateAdapter = true)
 data class CurrentWeatherDTO(
     @Json(name = "name") val city: String,
@@ -77,7 +76,6 @@ fun CurrentWeatherDTO.asDomainModel(): CurrentWeather {
 /**
  * Convert DTO to a list of domain Forecast objects.
  */
-
 fun ForecastDTO.asDomainModel(): List<ForecastItem> {
     return forecasts.map {
         ForecastItem(

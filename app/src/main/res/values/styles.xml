@@ -2,6 +2,11 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Changed navigation bar color -->
+        <item name="android:navigationBarColor"> @android:color/transparent</item>
+        <!-- Changed status bar color -->
+        <item name="android:statusBarColor"> @android:color/transparent</item>
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -12,22 +17,10 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/margin_sixteen</item>
-        <item name="android:layout_marginTop">@dimen/margin_thirty_two</item>
         <item name="android:layout_marginEnd">@dimen/margin_eight</item>
         <item name="android:background">@drawable/bg_white_rect</item>
         <item name="android:textColorHint">@android:color/darker_gray</item>
         <item name="android:textSize">@dimen/text_size_twenty</item>
-        <item name="android:padding">@dimen/padding_eight</item>
-    </style>
-
-    <style name="ButtonStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/margin_eight</item>
-        <item name="android:layout_marginTop">@dimen/margin_thirty_two</item>
-        <item name="android:layout_marginEnd">@dimen/margin_sixteen</item>
-        <item name="android:textSize">@dimen/text_size_twenty</item>
-        <item name="android:background">@drawable/bg_white_corners</item>
         <item name="android:padding">@dimen/padding_eight</item>
     </style>
 
@@ -140,6 +133,26 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginTop">@dimen/margin_eight</item>
+    </style>
+
+    <style name="AppWidgetSection" parent="@android:style/Widget">
+        <item name="android:padding">8dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AppWidgetTemp" parent="AppWidgetDescr">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+
+    </style>
+
+    <style name="AppWidgetDescr" parent="Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>

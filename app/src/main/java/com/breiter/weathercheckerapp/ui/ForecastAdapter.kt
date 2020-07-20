@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.breiter.weathercheckerapp.databinding.ListItemForecastBinding
 import com.breiter.weathercheckerapp.domain.ForecastItem
 
-
 class ForecastAdapter : ListAdapter<ForecastItem, ForecastAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

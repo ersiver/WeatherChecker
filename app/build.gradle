@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.breiter.weathercheckerapp"
@@ -54,6 +54,7 @@ dependencies {
     // Lifcecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle_extensions"
 
     // Core with Ktx
     implementation "androidx.core:core-ktx:$version_core"
@@ -78,4 +79,11 @@ dependencies {
 
     //Location services
     implementation "com.google.android.gms:play-services-location:$version_services_location"
+
+    // WorkManager
+    implementation  "androidx.work:work-runtime-ktx:$version_work"
+
+    // Logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
 }
