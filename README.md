@@ -25,10 +25,15 @@ Displays up to date weahter info for the current device's location. The widget i
 
 ## :link:  Preview
 ![gif_main](https://user-images.githubusercontent.com/58771510/87946138-8cd81580-ca99-11ea-93c5-b07fa1ac0faa.gif)
+
 ![gif_snackbar](https://user-images.githubusercontent.com/58771510/87946159-92356000-ca99-11ea-9801-2fd48805eb4a.gif)
+
 ![gif_widget](https://user-images.githubusercontent.com/58771510/87946170-95305080-ca99-11ea-917c-ab6b8b87cc20.gif)
+
 ![gif_emptytext](https://user-images.githubusercontent.com/58771510/87946176-9792aa80-ca99-11ea-9e34-a2322552c029.gif)
+
 ![permission_reques](https://user-images.githubusercontent.com/58771510/87946214-a24d3f80-ca99-11ea-92dd-fc7ace1e7c47.png)
+
 ![no_internet](https://user-images.githubusercontent.com/58771510/87946221-a4af9980-ca99-11ea-8405-5c323a57f967.jpg) ![wrong_input](https://user-images.githubusercontent.com/58771510/87946323-c446c200-ca99-11ea-9244-40185099b3b6.jpg)
 
 
