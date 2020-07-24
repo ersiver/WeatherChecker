@@ -24,6 +24,7 @@ import com.breiter.weathercheckerapp.widget.utils.WIDGET_ICON
 import com.breiter.weathercheckerapp.widget.utils.WIDGET_PREF
 import com.breiter.weathercheckerapp.widget.utils.WIDGET_TEMP
 import com.breiter.weathercheckerapp.widget.work.WidgetUpdateWorker
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 /**
@@ -39,6 +40,7 @@ class WeatherAppWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
+
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds)
             updateAppWidget(
@@ -104,7 +106,6 @@ class WeatherAppWidget : AppWidgetProvider() {
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
 
-
         /**
          * Invoked by WorkManager, when location is updated.
          */
@@ -126,8 +127,8 @@ class WeatherAppWidget : AppWidgetProvider() {
     }
 
     /**
-     * When widget is attached to the screen, call
-     * WorkManager to schedule updating the widget info.
+     * When the first AppWidget instance is attached to the screen,
+     * call WorkManager to schedule updating the widget info.
      */
     override fun onEnabled(context: Context) {
         super.onEnabled(context)
@@ -136,12 +137,12 @@ class WeatherAppWidget : AppWidgetProvider() {
             context.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         )
             setupRecurringWork(context)
-        else {
+         else
             Toast.makeText(
                 context,
                 R.string.location_required_explanation_widget,
-                Toast.LENGTH_LONG).show()
-        }
+                Toast.LENGTH_LONG
+            ).show()
     }
 
     /**
@@ -163,13 +164,15 @@ class WeatherAppWidget : AppWidgetProvider() {
     }
 
     /**
-     * When the last widget is removed, all updates
-     * scheduled by WorkManager are cancelled.
+     * When the last AppWidget instance for this
+     * provider is deleted all updates scheduled
+     * by WorkManager are cancelled.
      */
     override fun onDisabled(context: Context) {
         super.onDisabled(context)
-
         WorkManager.getInstance(context)
             .cancelUniqueWork(WidgetUpdateWorker.WORK_NAME)
+
+        Timber.i("Work request cancelled")
     }
 }

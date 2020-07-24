@@ -10,12 +10,8 @@ import androidx.work.WorkerParameters
 import com.breiter.weathercheckerapp.domain.CurrentWeather
 import com.breiter.weathercheckerapp.repository.WeatherRepository
 import com.breiter.weathercheckerapp.util.asTempString
-import com.breiter.weathercheckerapp.widget.utils.WIDGET_CITY
-import com.breiter.weathercheckerapp.widget.utils.WIDGET_DESCR
-import com.breiter.weathercheckerapp.widget.utils.WIDGET_ICON
-import com.breiter.weathercheckerapp.widget.utils.WIDGET_PREF
-import com.breiter.weathercheckerapp.widget.utils.WIDGET_TEMP
 import com.breiter.weathercheckerapp.widget.ui.WeatherAppWidget
+import com.breiter.weathercheckerapp.widget.utils.*
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -24,10 +20,16 @@ import java.util.concurrent.TimeUnit
 class WidgetUpdateWorker(private val context: Context, parameters: WorkerParameters) :
     CoroutineWorker(context, parameters) {
 
+    //The data source this Worker will fetch weather from.
+    private val repository = WeatherRepository()
+
+    //Scope and job for all coroutines launched by this worker.
     private val job = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + job)
-    private val repository = WeatherRepository()
+
+    // Location classes.
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var locationCallback: LocationCallback
 
     override suspend fun doWork(): Result {
         try {
@@ -48,17 +50,19 @@ class WidgetUpdateWorker(private val context: Context, parameters: WorkerParamet
      */
     @SuppressLint("MissingPermission")
     private fun startLocationUpdates() {
+
+        // Initialize the FusedLocationClient.
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+
+        // Initialize the location callbacks.
+        locationCallback = getLocationCallback()
 
         //Subscribe to location changes.
         fusedLocationClient.requestLocationUpdates(
             getLocationRequest(),
-            getLocationCallback(),
+            locationCallback,
             Looper.getMainLooper()
         )
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            updateWeather(location)
-        }
     }
 
     /**
@@ -67,12 +71,11 @@ class WidgetUpdateWorker(private val context: Context, parameters: WorkerParamet
      */
     private fun getLocationCallback(): LocationCallback {
         return object : LocationCallback() {
+
             override fun onLocationResult(locationResult: LocationResult?) {
                 super.onLocationResult(locationResult)
-
                 val location = locationResult?.lastLocation ?: return
                 updateWeather(location)
-
             }
         }
     }
@@ -91,6 +94,9 @@ class WidgetUpdateWorker(private val context: Context, parameters: WorkerParamet
         }
     }
 
+    /**
+     * Request weather for the current location.
+     */
     private fun updateWeather(location: Location) {
         coroutineScope.launch {
             withContext(Dispatchers.IO) {
@@ -104,7 +110,7 @@ class WidgetUpdateWorker(private val context: Context, parameters: WorkerParamet
     }
 
     /**
-     * Notify an update for the weather widget on location update.
+     * Notify the widget on location update.
      */
     private fun savedWeatherToSharedPrefsAndNotifyWidget(weather: CurrentWeather) {
         val sharedPref = context

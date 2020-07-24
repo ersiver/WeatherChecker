@@ -11,6 +11,8 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.view.updatePadding
@@ -35,9 +37,6 @@ class WeatherFragment : Fragment() {
     private val weatherViewModel: WeatherViewModel by lazy {
         ViewModelProvider(this).get(WeatherViewModel::class.java)
     }
-
-    private val runningQOrLater =
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +64,7 @@ class WeatherFragment : Fragment() {
         val weatherLayout: ConstraintLayout = binding.weatherLayout
         weatherLayout.setOnApplyWindowInsetsListener { view, insets ->
             view.updatePadding(
-                top = insets.systemWindowInsetBottom,
+                top = insets.systemWindowInsetTop,
                 bottom = insets.systemWindowInsetBottom
             )
             insets
@@ -98,14 +97,14 @@ class WeatherFragment : Fragment() {
                 if (location != null)
                     weatherViewModel.onLocationUpdated(location)
                 else
-                    fusedLocationClient.requestLocationUpdates(
+                //Subscribe to location changes.
+                fusedLocationClient.requestLocationUpdates(
                         getLocationRequest(),
                         getLocationCallback(),
                         Looper.getMainLooper()
                     )
             }
         }
-
     }
 
     /**
@@ -147,12 +146,11 @@ class WeatherFragment : Fragment() {
      */
     private fun requestLocationPermission() {
         var permissionsArray = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
-        val requestCode = when {
-            runningQOrLater -> {
-                permissionsArray += Manifest.permission.ACCESS_BACKGROUND_LOCATION
-                REQUEST_FOREGROUND_AND_BACKGROUND_PERMISSION_REQUEST_CODE
-            }
-            else -> REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
+        var requestCode = REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+            permissionsArray += Manifest.permission.ACCESS_BACKGROUND_LOCATION
+            requestCode = REQUEST_FOREGROUND_AND_BACKGROUND_PERMISSION_REQUEST_CODE
         }
         requestPermissions(permissionsArray, requestCode)
     }
@@ -190,9 +188,10 @@ class WeatherFragment : Fragment() {
                 startActivity(intent)
             }.show()
             return
-        } else {
-            requestLastLocationOrStartLocationUpdates()
-        }
+        } else
+
+        // Permission granted
+        requestLastLocationOrStartLocationUpdates()
     }
 
     companion object {
