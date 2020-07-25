@@ -18,12 +18,12 @@
             android:id="@+id/weather_icon"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:layout_marginEnd="@dimen/margin_four"
+            android:layout_marginEnd="@dimen/margin_0_5"
             android:contentDescription="@string/current_weather_icon"
             tools:src="@drawable/icon" />
 
         <LinearLayout
-            android:layout_marginStart="@dimen/margin_four"
+            android:layout_marginStart="@dimen/margin_0_5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"

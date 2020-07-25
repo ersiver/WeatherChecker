@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_four">4dp</dimen>
-    <dimen name="margin_eight">8dp</dimen>
-    <dimen name="margin_sixteen">16dp</dimen>
-    <dimen name="margin_twenty_four">24dp</dimen>
-    <dimen name="margin_thirty_two">32dp</dimen>
-    <dimen name="margin_thirty_six">36dp</dimen>
+    <dimen name="margin_0_5">4dp</dimen>
+    <dimen name="margin_1">8dp</dimen>
+    <dimen name="margin_2">16dp</dimen>
+    <dimen name="margin_3">24dp</dimen>
+    <dimen name="margin_4">32dp</dimen>
+    <dimen name="margin_4_5">36dp</dimen>
 
-    <dimen name="text_size_twenty_four">24sp</dimen>
-    <dimen name="text_size_twenty">20sp</dimen>
-    <dimen name="text_size_thirty_two">32sp</dimen>
+    <dimen name="text_size_3">24sp</dimen>
+    <dimen name="text_size_2_5">20sp</dimen>
+    <dimen name="text_size_4">32sp</dimen>
 
-    <dimen name="padding_eight">8dp</dimen>
-    <dimen name="text_size_eighteen">18sp</dimen>
+    <dimen name="padding_1">8dp</dimen>
+    <dimen name="text_size_2_25">18sp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information

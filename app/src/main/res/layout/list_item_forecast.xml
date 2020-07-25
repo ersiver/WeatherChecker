@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="24dp"
                 android:layout_weight="1"
-                android:layout_marginTop="@dimen/margin_eight"
+                android:layout_marginTop="@dimen/margin_1"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/icon_presenting_weather"
                 app:weatherIcon="@{forecastItem.weathers}"
@@ -64,7 +64,7 @@
             <TextView
                 android:id="@+id/night_day_text"
                 style="@style/ForecastItemStyle"
-                android:layout_marginEnd="@dimen/margin_sixteen"
+                android:layout_marginEnd="@dimen/margin_2"
                 android:textAlignment="textEnd"
                 app:temperatureFormatted="@{forecastItem.tempNight}"
                 tools:text="-1°C" />

@@ -16,32 +16,32 @@
     <style name="InputStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/margin_sixteen</item>
-        <item name="android:layout_marginEnd">@dimen/margin_eight</item>
+        <item name="android:layout_marginStart">@dimen/margin_2</item>
+        <item name="android:layout_marginEnd">@dimen/margin_1</item>
         <item name="android:background">@drawable/bg_white_rect</item>
         <item name="android:textColorHint">@android:color/darker_gray</item>
-        <item name="android:textSize">@dimen/text_size_twenty</item>
-        <item name="android:padding">@dimen/padding_eight</item>
+        <item name="android:textSize">@dimen/text_size_2_5</item>
+        <item name="android:padding">@dimen/padding_1</item>
     </style>
 
     <style name="CityNameStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/margin_twenty_four</item>
+        <item name="android:layout_marginTop">@dimen/margin_3</item>
         <item name="android:fontFamily">@font/fira_sans_bold</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/text_size_thirty_two</item>
+        <item name="android:textSize">@dimen/text_size_4</item>
     </style>
 
     <style name="ErrorMessageStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/margin_twenty_four</item>
-        <item name="android:layout_marginStart">@dimen/margin_twenty_four</item>
-        <item name="android:layout_marginEnd">@dimen/margin_twenty_four</item>
+        <item name="android:layout_marginTop">@dimen/margin_3</item>
+        <item name="android:layout_marginStart">@dimen/margin_3</item>
+        <item name="android:layout_marginEnd">@dimen/margin_3</item>
         <item name="android:fontFamily">@font/fira_sans_bold</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/text_size_twenty_four</item>
+        <item name="android:textSize">@dimen/text_size_3</item>
     </style>
 
     <style name="CurrentTempStyle">
@@ -49,30 +49,30 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/fira_sans_bold</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/text_size_thirty_two</item>
+        <item name="android:textSize">@dimen/text_size_4</item>
     </style>
 
     <style name="LocationImageStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/margin_thirty_six</item>
+        <item name="android:layout_marginTop">@dimen/margin_4_5</item>
     </style>
 
     <style name="WeatherPreviewStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/margin_four</item>
+        <item name="android:layout_marginStart">@dimen/margin_0_5</item>
         <item name="android:fontFamily">@font/fira_sans_semibold</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/text_size_twenty</item>
+        <item name="android:textSize">@dimen/text_size_2_5</item>
     </style>
 
     <style name="SectionDividerStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:layout_marginStart">@dimen/margin_four</item>
-        <item name="android:layout_marginTop">@dimen/margin_eight</item>
-        <item name="android:layout_marginEnd">@dimen/margin_four</item>
+        <item name="android:layout_marginStart">@dimen/margin_0_5</item>
+        <item name="android:layout_marginTop">@dimen/margin_1</item>
+        <item name="android:layout_marginEnd">@dimen/margin_0_5</item>
         <item name="android:background">@android:color/white</item>
     </style>
 
@@ -89,7 +89,7 @@
         <item name="android:fontFamily">@font/fira_sans_semibold</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/text_size_eighteen</item>
+        <item name="android:textSize">@dimen/text_size_2_25</item>
     </style>
 
     <style name="WeatherIconSmallStyle">
@@ -101,7 +101,7 @@
     <style name="CurrentWeatherGridStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/margin_four</item>
+        <item name="android:layout_margin">@dimen/margin_0_5</item>
         <item name="android:columnCount">5</item>
         <item name="android:rowCount">2</item>
     </style>
@@ -109,7 +109,7 @@
     <style name="CenterPointStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/margin_eight</item>
+        <item name="android:layout_marginTop">@dimen/margin_1</item>
     </style>
 
 
@@ -118,8 +118,8 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:fontFamily">@font/fira_sans_semibold</item>
-        <item name="android:textSize">@dimen/text_size_eighteen</item>
-        <item name="android:layout_marginTop">@dimen/margin_eight</item>
+        <item name="android:textSize">@dimen/text_size_2_25</item>
+        <item name="android:layout_marginTop">@dimen/margin_1</item>
     </style>
 
     <style name="ErrorLoadingImageStyle">
@@ -132,7 +132,7 @@
     <style name="ForecastListStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:layout_marginTop">@dimen/margin_eight</item>
+        <item name="android:layout_marginTop">@dimen/margin_1</item>
     </style>
 
     <style name="AppWidgetSection" parent="@android:style/Widget">

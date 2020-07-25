@@ -25,6 +25,7 @@
             android:hint="@string/enter_city"
             android:inputType="text"
             android:maxLines="1"
+            android:layout_marginTop="@dimen/margin_2"
             app:hideSoftInputFromWindow="@{viewModel.typingCompleteEvent}"
             app:layout_constraintEnd_toStartOf="@id/search_button"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,8 +39,9 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:onClick="@{()-> viewModel.onStartSearching()}"
             android:text="@string/go"
-            android:layout_marginStart="@dimen/margin_eight"
-            android:layout_marginEnd="@dimen/margin_sixteen"
+            android:layout_marginStart="@dimen/margin_1"
+            android:layout_marginEnd="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_2"
             android:textColor="@android:color/primary_text_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/query_edit_text"
@@ -109,7 +111,7 @@
         <TextView
             android:id="@+id/day_of_week_text"
             style="@style/WeatherPreviewStyle"
-            android:layout_marginTop="@dimen/margin_eight"
+            android:layout_marginTop="@dimen/margin_1"
             app:dayOfWeek="@{viewModel.currentWeather.dateTime}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -271,7 +273,7 @@
 
         <TextView
             style="@style/CityNameStyle"
-            android:textSize="@dimen/text_size_twenty_four"
+            android:textSize="@dimen/text_size_3"
             android:visibility="gone"
             app:errorText="@{viewModel.errorMessage}"
             app:layout_constraintBottom_toTopOf="@id/weather_status_image"
