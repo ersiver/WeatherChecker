@@ -12,9 +12,9 @@ The app integrates <b>coroutines with Retrofit</b> to fetch weather information 
 Displays up to date weather info for the current device's location. The widget is updated periodically with new data through a <b>WorkManager</b>. When the widget is added to the screen, the WorkManager schedules <b>repeated background work</b> to request location updates and fetch weather data from the API performing <b>suspending work</b>. When the widget is removed the background work is terminated.  In addition to the FINE location permission, the app has support for Android 10 and 11 by adding logic to access location in the background (android.permission.ACCESS_BACKGROUND_LOCATION). 
 
 ## Design
-<img align="right" src="https://user-images.githubusercontent.com/58771510/87946170-95305080-ca99-11ea-917c-ab6b8b87cc20.gif" width="33%"/>
 + App offers a full <b>edge-to-edge</b> screen experience (draws behind the transparent navigation and status bars) and uses insets to move controls away from gesture area.
 + The app displays Snackbar explaining importance of the location permission with an <b>action</b>, that allows the user to navigate to the settings.
+<img align="right" src="https://user-images.githubusercontent.com/58771510/87946170-95305080-ca99-11ea-917c-ab6b8b87cc20.gif" width="33%"/>
 + Scrolling list of forecasts is displayed in the RecyclerView widget.
 + Styled button behaves intuitively changing their appearance when they are pressed.
 + Spinner is displayed when the data is loaded.
@@ -27,10 +27,10 @@ Displays up to date weather info for the current device's location. The widget i
 
 ## Preview
 
-<img align="right" src="https://user-images.githubusercontent.com/58771510/87946159-92356000-ca99-11ea-9801-2fd48805eb4a.gif" width="33%"/>
-<img align="right" src="https://user-images.githubusercontent.com/58771510/87946176-9792aa80-ca99-11ea-9e34-a2322552c029.gif" width="33%"/>
+<img src="https://user-images.githubusercontent.com/58771510/87946159-92356000-ca99-11ea-9801-2fd48805eb4a.gif" width="33%"/>
+<img src="https://user-images.githubusercontent.com/58771510/87946176-9792aa80-ca99-11ea-9e34-a2322552c029.gif" width="33%"/>
 
-<img align="right" src="https://user-images.githubusercontent.com/58771510/87946214-a24d3f80-ca99-11ea-92dd-fc7ace1e7c47.png" width="33%"/> <img align="right" src="https://user-images.githubusercontent.com/58771510/87946221-a4af9980-ca99-11ea-8405-5c323a57f967.jpg" width="33%"/> <img align="right" src="https://user-images.githubusercontent.com/58771510/87946323-c446c200-ca99-11ea-9244-40185099b3b6.jpg" width="33%"/>
+<img src="https://user-images.githubusercontent.com/58771510/87946214-a24d3f80-ca99-11ea-92dd-fc7ace1e7c47.png" width="33%"/> <img src="https://user-images.githubusercontent.com/58771510/87946221-a4af9980-ca99-11ea-8405-5c323a57f967.jpg" width="33%"/> <img src="https://user-images.githubusercontent.com/58771510/87946323-c446c200-ca99-11ea-9244-40185099b3b6.jpg" width="33%"/>
 
 ## Resources
 + Icons from Flaticon.com (byFreepik, Swifticons, Good Ware, Vitaliy Gorbachev, Those Icon, Hirschwolf Lineal, Iconixar, Eucalyp, Pixel Perfect).
