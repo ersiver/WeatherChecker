@@ -31,5 +31,5 @@ Displays up to date weather info for the current device's location. The widget i
 + Icons from Flaticon.com (byFreepik, Swifticons, Good Ware, Vitaliy Gorbachev, Those Icon, Hirschwolf Lineal, Iconixar, Eucalyp, Pixel Perfect).
 
 ## OpenApi
-+ using the [OpenWeatherMapAPI] for constructing RESTful.<br/>
++ using the OpenWeatherMapAPI for constructing RESTful.<br/>
 
