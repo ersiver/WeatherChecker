@@ -29,6 +29,8 @@ data class MainDTO(
 
 @JsonClass(generateAdapter = true)
 data class WindDTO(val speed: Double)
+
+@JsonClass(generateAdapter = true)
 data class TemperatureDTO(
     @Json(name = "day") val tempDay: Double,
     @Json(name = "night") val tempNight: Double
@@ -49,7 +51,6 @@ data class WeatherItemDTO(
     val description: String,
     @Json(name = "icon") val iconId: String
 )
-
 
 /**
  * Convert DTO to domain CurrentWeather object
@@ -91,4 +92,3 @@ fun ForecastDTO.asDomainModel(): List<ForecastItem> {
         )
     }
 }
-

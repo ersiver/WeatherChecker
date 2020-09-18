@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.breiter.weathercheckerapp.viewmodel.WeatherViewModel" />
@@ -18,33 +20,45 @@
         android:background="@color/colorPrimary"
         tools:context=".ui.MainActivity">
 
-        <EditText
-            android:id="@+id/query_edit_text"
-            style="@style/InputStyle"
-            android:afterTextChanged="@{viewModel::afterCityTextChange}"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/query_layout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/margin_2"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/margin_1"
+            android:background="@android:color/white"
             android:hint="@string/enter_city"
-            android:inputType="text"
-            android:maxLines="1"
-            android:layout_marginTop="@dimen/margin_2"
-            app:hideSoftInputFromWindow="@{viewModel.typingCompleteEvent}"
+            app:boxBackgroundColor="@android:color/white"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toStartOf="@id/search_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="Autofill" />
+            app:startIconDrawable="@drawable/ic_search">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/query_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:afterTextChanged="@{viewModel::afterCityTextChange}"
+                android:maxLines="1"
+                app:hideSoftInputFromWindow="@{viewModel.typingCompleteEvent}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/search_button"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_marginStart="@dimen/margin_1"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/margin_2"
             android:onClick="@{()-> viewModel.onStartSearching()}"
             android:text="@string/go"
-            android:layout_marginStart="@dimen/margin_1"
-            android:layout_marginEnd="@dimen/margin_2"
-            android:layout_marginTop="@dimen/margin_2"
             android:textColor="@android:color/primary_text_light"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/query_edit_text"
+            app:layout_constraintStart_toEndOf="@id/query_layout"
             app:layout_constraintTop_toTopOf="parent"
             app:toastWarningMessage="@{viewModel.toastWarningEvent}" />
 
@@ -57,7 +71,7 @@
             app:layout_constraintEnd_toStartOf="@id/city_name_text"
             app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/query_edit_text" />
+            app:layout_constraintTop_toBottomOf="@+id/query_layout" />
 
         <TextView
             android:id="@+id/city_name_text"
@@ -65,7 +79,7 @@
             android:text="@{viewModel.currentWeather.city}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/query_edit_text"
+            app:layout_constraintTop_toBottomOf="@+id/query_layout"
             app:visibility="@{viewModel.status}"
             tools:text="Offenbach" />
 
@@ -267,7 +281,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/query_edit_text"
+            app:layout_constraintTop_toBottomOf="@+id/query_layout"
             app:visibleOnError="@{viewModel.status}"
             tools:src="@drawable/loading_img" />
 

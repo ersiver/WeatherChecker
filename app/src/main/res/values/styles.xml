@@ -6,6 +6,7 @@
         <item name="android:navigationBarColor"> @android:color/transparent</item>
         <!-- Changed status bar color -->
         <item name="android:statusBarColor"> @android:color/transparent</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
 
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -13,15 +14,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="InputStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/margin_2</item>
-        <item name="android:layout_marginEnd">@dimen/margin_1</item>
-        <item name="android:background">@drawable/bg_white_rect</item>
-        <item name="android:textColorHint">@android:color/darker_gray</item>
-        <item name="android:textSize">@dimen/text_size_2_5</item>
-        <item name="android:padding">@dimen/padding_1</item>
+    <!-- TextInputLayout -->
+    <style name="AppTextField" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="startIconTint">@color/colorPrimary</item>
+        <item name="hintTextColor">@color/colorPrimary</item>
+        <item name="boxBackgroundColor">@android:color/white</item>
     </style>
 
     <style name="CityNameStyle">
