@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
+                android:inputType="text"
                 android:afterTextChanged="@{viewModel::afterCityTextChange}"
                 android:maxLines="1"
                 app:hideSoftInputFromWindow="@{viewModel.typingCompleteEvent}" />
