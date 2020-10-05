@@ -24,7 +24,7 @@ Displays up to date weather info for the current device's location. The widget i
 
 ## Preview
 
-<img  src="previews/preview_2.gif" width="30%"/>  src="previews/preview_3.gif" width="30%"/>  <img  src="previews/screen_1.jpg" width="30%"/>
+<img  src="previews/preview_2.gif" width="30%"/>  <img src="previews/preview_3.gif" width="30%"/>  <img  src="previews/screen_1.jpg" width="30%"/>
 
 
 ## Resources
