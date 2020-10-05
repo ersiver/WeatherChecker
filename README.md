@@ -1,5 +1,5 @@
 # WeatherApp
-<img align="right" src="https://user-images.githubusercontent.com/58771510/87946170-95305080-ca99-11ea-917c-ab6b8b87cc20.gif" width="33%"/>
+<img align="right" src="previews/preview_1.gif" width="33%"/>
 Android Weather app developed in Kotlin. The app is composed of a single screen and the app widget.
 
 ## WeatherFragment
@@ -24,7 +24,7 @@ Displays up to date weather info for the current device's location. The widget i
 
 ## Preview
 
-<img src="https://user-images.githubusercontent.com/58771510/87946138-8cd81580-ca99-11ea-93c5-b07fa1ac0faa.gif" width="30%"/> <img src="https://user-images.githubusercontent.com/58771510/87946159-92356000-ca99-11ea-9801-2fd48805eb4a.gif" width="30%"/>  <img src="https://user-images.githubusercontent.com/58771510/87946176-9792aa80-ca99-11ea-9e34-a2322552c029.gif" width="30%"/>
+<img  src="previews/preview_2.gif" width="30%"/>  src="previews/preview_3.gif" width="30%"/>  <img  src="previews/screen_1.jpg" width="30%"/>
 
 
 ## Resources

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WeatherCheckerApp</string>
     <string name="enter_city">Enter city</string>
-    <string name="go">Go</string>
+    <string name="go">Go!</string>
     <string name="location_icon">location icon</string>
     <string name="icon_presenting_weather">Icon describing weather conditions</string>
     <string name="weather_icon_min_temp">Weather icon presenting minimum temperature</string>
